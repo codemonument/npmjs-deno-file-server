@@ -1,6 +1,5 @@
 name: Publish to npm on new git tag
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   Build-Binaries:
@@ -17,8 +16,9 @@ jobs:
       - run: echo "$DENO_INSTALL/bin" >> $GITHUB_PATH
       - run: deno --version
       - run: npm i --no-package-lock
-      - run: npm run compile
       - run: echo "VERSION=$(npm run latest)" >> $GITHUB_ENV
+      - run: npm run compile
+        # if: ${{ env.VERSION === 'last-version-from npmjs' }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
