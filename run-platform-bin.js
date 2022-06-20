@@ -1,21 +1,27 @@
 #!/usr/bin/env node
 
 import { execa } from "execa";
-import { join, resolve } from "node:path";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
-// Possible values: https://nodejs.org/api/process.html#process_process_platform
-const os = process.platform;
+/**
+ * Define Project Paths
+ */
+const projectRoot = dirname(fileURLToPath(import.meta.url));
+const binPath = join(projectRoot, "bin");
 
-// Possible values: https://nodejs.org/api/process.html#processarch
-const arch = process.arch;
-
+/**
+ * Detect Host Platform
+ */
+const os = process.platform; // Possible values: https://nodejs.org/api/process.html#process_process_platform
+const arch = process.arch; // Possible values: https://nodejs.org/api/process.html#processarch
 const hostPlatform = `${os}-${arch}`;
 const [_1, _2, ...params] = process.argv;
 
-const binPath = join(__dirname, "bin");
-
+/**
+ * Call binary based on hostPlatform
+ */
 let myproc;
-
 switch (hostPlatform) {
   case `win32-x32`:
   case `win32-x64`:
