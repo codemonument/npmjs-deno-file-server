@@ -8,6 +8,7 @@ const versionPath = join(Deno.cwd(), "VERSION");
 
 // get latest version
 const version = await findLatestVersion();
+console.log(`Found Latest Version for Deno std file_server: ${version}`);
 
 // update package.json
 const packageJson = await readJson(packagePath);
