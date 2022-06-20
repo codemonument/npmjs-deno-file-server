@@ -1,10 +1,14 @@
-const response = await fetch(`https://deno.land/std/http/file_server.ts`, {
-  redirect: "manual",
-});
+export async function findLatestVersion() {
+  const response = await fetch(`https://deno.land/std/http/file_server.ts`, {
+    redirect: "manual",
+  });
 
-const location: string = response.headers.get("location");
+  const location: string = response.headers.get("location");
 
-const [_, modPlusVersion, ...path] = location.split(`/`);
-const [mod, version] = modPlusVersion.split(`@`);
+  const [_, modPlusVersion, ..._path] = location.split(`/`);
+  const [_mod, version] = modPlusVersion.split(`@`);
 
-await Deno.stdout.write(new TextEncoder().encode(version));
+  return version;
+}
+
+await Deno.stdout.write(new TextEncoder().encode(await findLatestVersion()));
