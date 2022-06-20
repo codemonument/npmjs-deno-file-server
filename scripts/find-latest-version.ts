@@ -8,7 +8,7 @@ export async function findLatestVersion() {
   const [_, modPlusVersion, ..._path] = location.split(`/`);
   const [_mod, version] = modPlusVersion.split(`@`);
 
-  console.log(`Found Latest Version for Deno std file_server: ${version}`);
-
   return version;
 }
+
+await Deno.stdout.write(new TextEncoder().encode(await findLatestVersion()));
