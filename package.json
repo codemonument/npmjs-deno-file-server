@@ -6,7 +6,9 @@
   "config": {
     "outfile": "deno-file-server"
   },
-  "bin": "./run-platform-bin.js",
+  "bin": {
+    "deno-file-server": "./run-platform-bin.js"
+  },
   "scripts": {
     "start": "node ./run-platform-bin.js",
     "compile": "run-p compile-windows compile-linux compile-macos-x64 compile-macos-arm update-latest",
