@@ -2,10 +2,15 @@
   "name": "deno-file-server",
   "version": "0.0.1",
   "description": "A nodejs release of https://deno.land/std/http/file_server.ts.",
+  "config": {
+    "outfile": "deno-file-server"
+  },
   "scripts": {
-    "compile-windows": "",
+    "compile": "run-p compile-windows compile-linux compile-macos",
+    "compile-windows": "deno compile --allow-net --allow-read --target x86_64-pc-windows-msvc -o bin/%npm_package_config_outfile% https://deno.land/std/http/file_server.ts",
     "compile-linux": "",
-    "compile-macos": ""
+    "compile-macos": "",
+    "windows": "bin\\deno-file-server --help"
   },
   "repository": {
     "type": "git",
