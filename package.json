@@ -6,10 +6,12 @@
   "config": {
     "outfile": "deno-file-server"
   },
+  "bin": "./run-platform-bin.js",
   "scripts": {
+    "start": "node ./run-platform-bin.js",
+    "compile": "run-p compile-windows compile-linux compile-macos-x64 compile-macos-arm update-latest",
     "latest": "deno run --allow-net=deno.land ./scripts/find-latest-version.ts",
     "update-latest": "deno run --allow-net=deno.land --allow-read=.,package.json --allow-write=package.json ./scripts/update-package-json.ts",
-    "compile": "run-p compile-windows compile-linux compile-macos-x64 compile-macos-arm update-latest",
     "compile-windows": "deno compile --allow-net --allow-read --target x86_64-pc-windows-msvc -o bin/win32 https://deno.land/std/http/file_server.ts",
     "compile-linux": "deno compile --allow-net --allow-read --target x86_64-unknown-linux-gnu -o bin/linux https://deno.land/std/http/file_server.ts",
     "compile-macos-x64": "deno compile --allow-net --allow-read --target x86_64-apple-darwin -o bin/darwin-x64 https://deno.land/std/http/file_server.ts",
