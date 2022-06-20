@@ -6,6 +6,8 @@
     "outfile": "deno-file-server"
   },
   "scripts": {
+    "latest": "deno run --allow-net=deno.land ./scripts/find-latest-version.ts",
+    "update-latest": "deno run --allow-net=deno.land --allow-read=.,package.json --allow-write=package.json ./scripts/update-package-json.ts",
     "compile": "run-p compile-windows compile-linux compile-macos-x64 compile-macos-arm",
     "compile-windows": "deno compile --allow-net --allow-read --target x86_64-pc-windows-msvc -o bin/%npm_package_config_outfile% https://deno.land/std/http/file_server.ts",
     "compile-linux": "deno compile --allow-net --allow-read --target x86_64-unknown-linux-gnu -o bin/%npm_package_config_outfile%-linux https://deno.land/std/http/file_server.ts",
