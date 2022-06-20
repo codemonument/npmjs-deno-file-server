@@ -20,14 +20,15 @@
   },
   "repository": {
     "type": "git",
-    "url": " "
+    "url": "https://github.com/codemonument/npmjs-deno-file-server.git"
   },
   "keywords": [
     "file server",
     "http server",
     "http",
     "server",
-    "file"
+    "file",
+    "deno"
   ],
   "author": "Benjamin Jesuiter <bjesuiter@gmail.com>",
   "license": "MIT",
