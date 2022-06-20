@@ -40,5 +40,11 @@
   },
   "dependencies": {
     "execa": "^6.1.0"
-  }
+  },
+  "files": [
+    "bin/**",
+    "package.json",
+    "Readme.md",
+    "run-platform-bin.js"
+  ]
 }
