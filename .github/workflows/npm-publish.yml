@@ -13,8 +13,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
-      - run: "curl -fsSL https://deno.land/x/install/install.sh | sh"
-      - run: "export DENO_INSTALL="/home/runner/.deno"
-      - run: "export PATH="$DENO_INSTALL/bin:$PATH"
-      - run: "deno --version"
-      - run: "npm run compile"
+      - run: curl -fsSL https://deno.land/x/install/install.sh | sh
+      - run: export DENO_INSTALL="/home/runner/.deno
+      - run: export PATH="$DENO_INSTALL/bin:$PATH
+      - run: deno --version
+      - run: npm run compile
