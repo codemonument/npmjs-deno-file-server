@@ -16,9 +16,12 @@ jobs:
       - run: echo "$DENO_INSTALL/bin" >> $GITHUB_PATH
       - run: deno --version
       - run: npm i --no-package-lock
-      - run: echo "VERSION=$(npm run latest)" >> $GITHUB_ENV
+      - run: echo "VERSION=$(deno run --allow-net=deno.land ./scripts/find-latest-version.ts)" >> $GITHUB_ENV
       - run: npm run compile
         # if: ${{ env.VERSION === 'last-version-from npmjs' }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: ${{ env.VERSION }}
