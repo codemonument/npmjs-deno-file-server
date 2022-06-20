@@ -12,3 +12,4 @@ export async function findLatestVersion() {
 }
 
 await Deno.stdout.write(new TextEncoder().encode(await findLatestVersion()));
+await Deno.writeTextFile(`${Deno.cwd()}/VERSION`, `${version}`);
