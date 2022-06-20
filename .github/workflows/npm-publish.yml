@@ -3,7 +3,7 @@ on:
   push:
     # tags:
     #   - "*"
-    branches: 
+    branches:
       - "**"
 jobs:
   Build-Binaries:
@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-          with:
-            node-version: "lts/*"
+        with:
+          node-version: "lts/*"
       - run: "curl -fsSL https://deno.land/x/install/install.sh | sh"
       - run: "deno --version"
       - run: "npm run compile"
