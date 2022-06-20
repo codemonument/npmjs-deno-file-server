@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { execa } from "execa";
+import { join, resolve } from "node:path";
 
 // Possible values: https://nodejs.org/api/process.html#process_process_platform
 const os = process.platform;
@@ -11,22 +12,22 @@ const arch = process.arch;
 const hostPlatform = `${os}-${arch}`;
 const [_1, _2, ...params] = process.argv;
 
+const binPath = join(__dirname, "bin");
+
 let myproc;
 
 switch (hostPlatform) {
   case `win32-x32`:
   case `win32-x64`:
-    myproc = execa(`./bin/win32.exe`, params);
+    myproc = execa(`${binPath}/win32.exe`, params);
     break;
   case `linux-x32`:
   case `linux-x64`:
-    myproc = execa(`./bin/linux`, params);
+    myproc = execa(`${binPath}/linux`, params);
     break;
   case `darwin-x64`:
-    myproc = execa(`./bin/darwin-x64`, params);
-    break;
   case `darwin-arm64`:
-    myproc = execa(`./bin/darwin-x64`, params);
+    myproc = execa(`${binPath}/${hostPlatform}`, params);
     break;
   default:
     console.error(
