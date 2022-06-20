@@ -1,10 +1,7 @@
 name: Publish to npm on new git tag
 on:
-  push:
-    tags:
-      - "*"
-    # branches:
-    #   - "**"
+  workflow_dispatch:
+
 jobs:
   Build-Binaries:
     runs-on: ubuntu-latest
@@ -21,6 +18,7 @@ jobs:
       - run: deno --version
       - run: npm i --no-package-lock
       - run: npm run compile
+      - run: echo "VERSION=$(npm run latest)" >> $GITHUB_ENV
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
